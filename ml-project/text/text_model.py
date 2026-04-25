@@ -12,9 +12,9 @@ TRAIN_PATH = "image_branch/data/processed/train_with_posters_tvdb.json"
 VAL_PATH = "image_branch/data/processed/val_with_posters_tvdb.json"
 TEST_PATH = "image_branch/data/processed/test_with_posters_tvdb.json"
 
-os.makedirs("text", exist_ok=True)
+os.makedirs("ml-project/text", exist_ok=True)
 os.makedirs("fusion", exist_ok=True)
-os.makedirs("text/predictions", exist_ok=True)
+os.makedirs("ml-project/text/predictions", exist_ok=True)
 
 
 def load_split(path):
@@ -103,32 +103,32 @@ def main():
     results.append(evaluate(y_test, test_pred, "test"))
 
     results_df = pd.DataFrame(results)
-    results_df.to_csv("text/text_model_results.csv", index=False)
-    print("\nSaved: text/text_model_results.csv")
+    results_df.to_csv("ml-project/text/text_model_results.csv", index=False)
+    print("\nSaved: ml-project/text/text_model_results.csv")
 
     save_predictions(
         train_df,
         y_train,
         train_pred,
-        "text/predictions/text_train_predictions.csv"
+        "ml-project/text/predictions/text_train_predictions.csv"
     )
 
     save_predictions(
         val_df,
         y_val,
         val_pred,
-        "text/predictions/text_val_predictions.csv"
+        "ml-project/text/predictions/text_val_predictions.csv"
     )
 
     save_predictions(
         test_df,
         y_test,
         test_pred,
-        "text/predictions/text_test_predictions.csv"
+        "ml-project/text/predictions/text_test_predictions.csv"
     )
 
-    joblib.dump(model, "text/ridge_model.pkl")
-    joblib.dump(vectorizer, "text/tfidf_vectorizer.pkl")
+    joblib.dump(model, "ml-project/text/ridge_model.pkl")
+    joblib.dump(vectorizer, "ml-project/text/tfidf_vectorizer.pkl")
 
     print("\nSaved model/vectorizer.")
     print("Text branch is now fusion-ready.")
