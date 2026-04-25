@@ -142,6 +142,7 @@
 #     extract_split(split)
 
 import os
+from pathlib import Path
 import torch
 import torchvision.models as models
 import torchvision.transforms as transforms
@@ -164,6 +165,16 @@ else:
     device = torch.device("cpu")
 
 print("Using device:", device)
+
+
+# Resolve paths relative to this script so execution does not depend on cwd.
+BASE_DIR = Path(__file__).resolve().parent
+DATA_DIR = BASE_DIR / "data"
+PROCESSED_DIR = DATA_DIR / "processed"
+FEATURES_DIR = DATA_DIR / "features"
+
+# Optional smoke-test limiter: set MAX_ROWS to process only first N rows/split.
+MAX_ROWS = int(os.getenv("MAX_ROWS", "0"))
 
 
 # --------------------------------------------------
@@ -195,10 +206,30 @@ clip_model.eval()
 clip_processor = CLIPProcessor.from_pretrained("openai/clip-vit-base-patch32")
 
 
+def _clip_output_to_numpy(clip_output):
+    """
+    Convert CLIP output to a 1D numpy embedding.
+
+    Depending on transformers version, get_image_features may return
+    either a Tensor directly or a model output object with pooler_output.
+    """
+    if isinstance(clip_output, torch.Tensor):
+        vec = clip_output
+    elif hasattr(clip_output, "pooler_output") and clip_output.pooler_output is not None:
+        vec = clip_output.pooler_output
+    elif hasattr(clip_output, "last_hidden_state") and clip_output.last_hidden_state is not None:
+        # Fallback mean-pooling if pooler_output is unavailable.
+        vec = clip_output.last_hidden_state.mean(dim=1)
+    else:
+        raise TypeError(f"Unexpected CLIP output type: {type(clip_output)}")
+
+    return vec.squeeze(0).detach().cpu().numpy()
+
+
 # --------------------------------------------------
 # Output folder
 # --------------------------------------------------
-os.makedirs("data/features", exist_ok=True)
+os.makedirs(FEATURES_DIR, exist_ok=True)
 
 
 def extract_split(split):
@@ -207,14 +238,18 @@ def extract_split(split):
     train, val, or test.
     """
 
-    input_path = f"data/processed/{split}_with_posters_tvdb.json"
+    input_path = PROCESSED_DIR / f"{split}_with_posters_tvdb.json"
     df = pd.read_json(input_path)
+    if MAX_ROWS > 0:
+        df = df.head(MAX_ROWS)
 
     features = []
     valid_rows = []
 
     for _, row in tqdm(df.iterrows(), total=len(df), desc=split):
-        poster_path = row["poster_path"]
+        poster_path = Path(row["poster_path"])
+        if not poster_path.is_absolute():
+            poster_path = BASE_DIR / poster_path
 
         try:
             # Open image and force RGB format
@@ -235,13 +270,15 @@ def extract_split(split):
             # -----------------------------------------
             inputs = clip_processor(images=img, return_tensors="pt").to(device)
             with torch.no_grad():
-                clip_feat = clip_model.get_image_features(**inputs)
+                clip_out = clip_model.get_image_features(**inputs)
             
-            # Squeeze to shape (512,)
-            clip_feat = clip_feat.squeeze().detach().cpu().numpy()
+            # Convert CLIP output object/tensor to shape (512,)
+            clip_feat = _clip_output_to_numpy(clip_out)
             
             # Normalize CLIP embeddings (standard practice for CLIP models)
-            clip_feat = clip_feat / np.linalg.norm(clip_feat)
+            clip_norm = np.linalg.norm(clip_feat)
+            if clip_norm > 0:
+                clip_feat = clip_feat / clip_norm
 
             # -----------------------------------------
             # 3. Combine Features (Late Fusion Preparation)
@@ -258,8 +295,8 @@ def extract_split(split):
     X = np.array(features)
     valid_df = pd.DataFrame(valid_rows)
 
-    feature_path = f"data/features/X_image_{split}.npy"
-    rows_path = f"data/features/{split}_image_rows.json"
+    feature_path = FEATURES_DIR / f"X_image_{split}.npy"
+    rows_path = FEATURES_DIR / f"{split}_image_rows.json"
 
     # Save the new 1024-dimensional arrays
     np.save(feature_path, X)

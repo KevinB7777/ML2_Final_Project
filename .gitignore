@@ -14,3 +14,5 @@ image_branch/data/tvdb_poster_cache.json
 
 # Raw/full datasets
 image_branch/data/raw/
+
+/.venv
