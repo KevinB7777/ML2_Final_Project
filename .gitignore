@@ -1,0 +1,16 @@
+# Python
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+
+# Mac / editor
+.DS_Store
+.vscode/
+
+# Secrets / API-related local files
+.env
+*.key
+image_branch/data/tvdb_poster_cache.json
+
+# Raw/full datasets
+image_branch/data/raw/

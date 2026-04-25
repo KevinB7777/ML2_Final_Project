@@ -1,0 +1,7 @@
+[
+  "ridge",
+  "random_forest",
+  "extra_trees",
+  "hist_gradient_boosting",
+  "mlp"
+]

@@ -1,0 +1,676 @@
+id,movie_title,y_true,y_image_pred
+rw5663959,Goodfellas (1990),5.0,3.5321345
+rw2982832,The 100 (2014–2020),1.5,3.0174868
+rw0484712,Star Wars: Episode II - Attack of the Clones (2002),3.0,3.2834427
+rw6309584,Goads (2020),4.0,2.9798274
+rw4617825,Green Book (2018),5.0,3.4929543
+rw3455073,Batman v Superman: Dawn of Justice (2016),5.0,3.2697155
+rw0746035,American Pie 2 (2001),4.0,3.396172
+rw2069760,The Chaser (2008),5.0,3.4746342
+rw4197203,The Chronicles of Narnia: Prince Caspian (2008),4.5,3.1741266
+rw2136660,Wild Bill Hickok Rides (1942),3.5,2.9134316
+rw2388094,The Green Hornet (2011),4.0,3.6391606
+rw2776123,Spring Breakers (2012),3.5,3.521915
+rw4604563,Secret Window (2004),3.0,3.8473582
+rw0494120,Notting Hill (1999),1.0,3.057476
+rw0304037,Beethoven (1992),4.5,2.5782015
+rw5665700,Agua Donkeys (2020– ),5.0,4.079261
+rw5366955,Eight Crazy Nights (2002),5.0,3.3800397
+rw6329961,The Last Kingdom (2015– ),5.0,3.13027
+rw4642596,The Big Year (2011),5.0,2.9672434
+rw5231697,The King (I) (2019),2.5,2.6637661
+rw5716359,Toonstone (2014),4.5,2.908753
+rw4389145,Karwaan (2018),0.5,2.696057
+rw0429462,Without Limits (1998),2.5,3.5241666
+rw4350827,10 to Midnight (1983),2.0,3.04634
+rw3288403,Mission: Impossible - Rogue Nation (2015),2.5,3.6963744
+rw2485686,Joy Ride 2: Dead Ahead (2008 Video),2.0,4.187164
+rw3688066,Patriots Day (2016),4.0,3.661208
+rw2717917,War of the Satellites (1958),2.5,3.0059578
+rw2182637,Hit and Run (2009 Video),0.5,3.4234283
+rw2646536,Supercroc (2007),0.5,3.0176516
+rw2195436,The Unknown (1927),4.0,3.2026315
+rw2764426,"Rome, Open City (1945)",3.0,3.3881764
+rw5672954,Power Rangers (2017),3.5,3.2592869
+rw2618151,Husk (2011),3.0,3.8490963
+rw5396999,The Hustle (I) (2019),0.5,2.958076
+rw1038892,Born to Boogie (1972),5.0,4.1273947
+rw4104115,I Can Only Imagine (2018),0.5,3.4904168
+rw5634125,Pretty Woman (1990),5.0,2.8413663
+rw0572867,Hollow Man (2000),2.0,3.2883582
+rw0511770,Planet of the Apes (2001),2.5,2.1539466
+rw3594517,Vanished (2016),0.5,2.5488572
+rw3086926,Beetlejuice (1989–1991),5.0,3.1892858
+rw1064692,Kachche Dhaage (1999),5.0,3.3386033
+rw4615459,Aquaman (2018),0.5,3.0794759
+rw1564486,Charlotte's Web (2006),3.0,4.000436
+rw3835928,Brawl in Cell Block 99 (2017),0.5,2.7752564
+rw0783729,Dinner with Friends (2001 TV Movie),1.5,3.8015544
+rw5639524,Psycho (I) (2020),1.5,2.9227264
+rw4143536,The Architect (I) (2016),1.5,2.8149045
+rw1562268,Female Perversions (1996),4.5,4.031966
+rw3194770,Citizenfour (2014),4.5,3.9917462
+rw1089495,The Conqueror of Atlantis (1965),3.5,2.431807
+rw1547159,Final Fantasy X (2001 Video Game),5.0,3.4714477
+rw1544701,Black Dahlia (2006 Video),0.5,2.691091
+rw0599903,Gladiator (2000),1.0,4.098284
+rw3121781,Moebiuseu (2013),4.0,3.3222213
+rw0160901,Hardware Wars (1978),5.0,2.8334699
+rw6074330,The Hole (2009),1.5,2.6046288
+rw0221029,The Dungeonmaster (1984),0.5,3.2350876
+rw3148272,The Pest That Came to Dinner (1948),3.0,3.85459
+rw2235644,300 (2006),0.5,3.568088
+rw3191839,21 & Over (2013),3.5,3.7242665
+rw5934117,Dil Bechara (2020),5.0,4.267648
+rw4466747,Gold (I) (2016),2.5,2.8199277
+rw2383986,Anchors Aweigh (1945),4.0,3.5462875
+rw5719714,KD (A) Karuppudurai (2019),4.5,3.6391606
+rw0007741,Everything's Rosie (1931),4.0,3.6786163
+rw3807501,It (I) (2017),4.0,3.6163678
+rw4727808,Khuda Kay Liye (2007),0.5,3.022271
+rw1857892,Odysseus & the Isle of Mists (2008),2.0,3.003354
+rw4786334,Bodyguard (2018),0.5,3.2480342
+rw0360505,Don Juan DeMarco (1994),5.0,2.9295802
+rw5462012,Eli (I) (2019),3.0,2.6611023
+rw5564110,The Shanghai Story (1954),2.0,2.783484
+rw5213105,Sphere (1998),0.5,2.5571082
+rw4760068,Mickey's Fire Brigade (1935),4.5,3.2792351
+rw1191576,Man of the People (1937),1.5,3.2436314
+rw1185474,Serenity (2005),5.0,3.3068154
+rw2938999,12 Years a Slave (2013),4.5,3.757895
+rw5034699,No Trace (1950),3.0,3.043056
+rw4709837,Captain Marvel (2019),2.5,3.7363324
+rw2946972,Ride Along (2014),3.0,4.1445646
+rw4231989,November Criminals (2017),0.5,2.872268
+rw4272956,Shades of Blue (2016–2018),2.5,2.2914531
+rw0523290,The Beast Within: A Gabriel Knight Mystery (1996 Video Game),3.5,3.6894543
+rw5833672,Loser (2000),4.0,2.9468734
+rw3620095,Emerald City (2016–2017),5.0,3.1911075
+rw2840870,The Marksman (1987– ),3.0,3.4954689
+rw3825905,30-LOVE (2017),4.0,2.5808947
+rw4289611,Disenchantment (2018– ),2.0,3.2337117
+rw5994256,Gunjan Saxena: The Kargil Girl (2020),4.5,3.4919934
+rw2753064,Silent Hill: Revelation (2012),5.0,3.6326637
+rw4591004,Nanny McPhee Returns (2010),4.0,2.956571
+rw6262220,Ludo (2020),4.0,3.024802
+rw1473081,The Path to 9/11 (2006– ),3.5,3.6391606
+rw2451818,Sonatine (1993),5.0,3.4115086
+rw2333569,Apollo 13 (I) (1995),3.5,4.8509398
+rw4793235,Back to Life (2019– ),4.5,3.6391606
+rw2342010,The Other (1972),3.5,3.4764411
+rw3477733,Preacher (2016–2019),5.0,4.257342
+rw5026127,Zombieland (2009),3.5,3.5604177
+rw2285778,Ballada o soldate (1959),5.0,4.3947916
+rw5638008,Uncut Gems (2019),1.0,3.483921
+rw5814620,The 100 (2014–2020),1.0,3.0174868
+rw0511673,Planet of the Apes (2001),3.0,2.1539466
+rw0802413,My Little Eye (2002),4.5,2.8475623
+rw5390983,The Night Comes for Us (2018),2.0,3.7363384
+rw1921440,Yeung gwong ging chaat (1999),3.0,3.6391606
+rw0721532,Come Undone (2000),3.5,4.2436905
+rw4761216,The King of Queens (1998–2007),5.0,3.114788
+rw1458081,Rejected (2000),0.5,3.4055867
+rw2471716,Desperate Measures (2011),3.0,2.5553522
+rw1381378,Being John Malkovich (1999),5.0,4.247891
+rw2665963,Dead Space: Aftermath (2011 Video),3.0,2.7348466
+rw4768889,Shazam! (2019),3.5,3.1789012
+rw3479701,Aftershock (2012),2.5,3.544784
+rw1503371,The Child (2005),4.5,3.847046
+rw3322278,Star Trek II: The Wrath of Khan (1982),4.5,3.3355186
+rw1112627,Munchies (1987),1.5,2.826553
+rw4546505,Aquaman (2018),2.0,3.0794759
+rw3246979,Alien Outpost (2014),3.5,3.9224677
+rw6044832,Troy the Odyssey (2017),0.5,2.2884536
+rw2987384,The Wise Kids (2011),5.0,3.1238031
+rw5790037,The Invisible Man (I) (2020),2.5,3.304638
+rw4958651,Waxwork (1988),4.0,3.2632656
+rw0168763,Monty Python's Life of Brian (1979),4.0,3.439673
+rw3274103,Audacity (2015),5.0,2.7804635
+rw0522042,If I Die Before I Wake (1998),5.0,3.6391606
+rw2607952,The Avengers (2012),5.0,3.9680462
+rw0314687,Unforgiven (1992),0.5,4.058309
+rw0799629,The Art of Woo (2001),3.5,3.3645504
+rw3834966,Gotham (2014–2019),4.5,2.9602382
+rw4974262,Hellboy (2019),0.5,4.0370812
+rw5670598,Bad Boys for Life (2020),2.5,3.8571732
+rw5651928,Blue Story (2019),0.5,3.5077698
+rw0419189,Gummo (1997),4.0,3.72018
+rw3193391,Lords of Dogtown (2005),4.5,3.6216347
+rw3787865,White Lightning (1973),2.0,2.6409163
+rw2315845,Jud Süss - Film ohne Gewissen (2010),4.5,3.1276975
+rw2457746,Hellraiser (1987),4.5,2.9792373
+rw6340249,Boog & Elliot's Midnight Bun Run (2006 Video),1.0,2.9717324
+rw5857428,Birds of Prey (2020),1.0,3.6604722
+rw5195970,X戰警：黑鳳凰 (2019),4.0,3.319154
+rw3296950,The Cobbler (2014),2.0,3.9522374
+rw0055120,Killer's Kiss (1955),3.5,2.6900723
+rw4223454,The Kid Rides Again (1943),2.5,3.547378
+rw5714945,After Life (2019– ),5.0,2.7507248
+rw0600744,Cats (1998),5.0,3.3277907
+rw0649042,Love & Basketball (2000),5.0,2.689532
+rw2008364,Tyson (2008),4.0,3.143804
+rw1566105,Doom (2005),1.5,3.5608375
+rw3688327,The Fate of the Furious (2017),1.0,3.6604233
+rw0215230,Slayground (1983),3.5,4.0044155
+rw0683529,The Convent (2000),0.5,2.8573887
+rw3017961,Tokyo Story (1953),4.5,2.9766967
+rw3850949,Boo 2! A Madea Halloween (2017),0.5,3.7725673
+rw2310920,The Expendables (2010),4.0,3.0556192
+rw4925778,The Santa Clause (1994),5.0,3.6382701
+rw0509294,The Matrix (1999),4.5,3.5568204
+rw0452471,Fear and Loathing in Las Vegas (1998),0.5,2.5819106
+rw4312799,Yes Man (2008),2.5,2.6615758
+rw5943161,A One-Time Special (2020 TV Special),2.0,2.8716323
+rw2294693,Paa (2009),1.0,2.6457617
+rw4267392,Collateral (2004),3.5,3.4357445
+rw2112197,Inglourious Basterds (2009),1.5,3.6475937
+rw4370667,Hereditary (2018),3.5,1.91905
+rw5699935,Homecoming (1996 TV Movie),5.0,2.9092212
+rw1052328,BUtterfield 8 (1960),2.0,3.8612237
+rw6212413,Last Summer (1969),5.0,4.139333
+rw1818031,The Wicker Man (1973),3.5,3.5389698
+rw3733426,What the Health (2017),5.0,4.614213
+rw2471984,Thiru Thiru Thuru Thuru (2009),4.0,3.7009995
+rw3616150,Driving Lessons (2006),3.5,3.6222923
+rw4977762,The Hummingbird Project (2018),4.0,3.298839
+rw0188159,Pennies from Heaven (1981),0.5,3.0091386
+rw2589192,Hulk (2003),3.5,4.7452817
+rw6210204,World of Dance (2017– ),2.5,3.9797606
+rw3491682,Experimenter (2015),4.0,3.2270393
+rw1615093,Rose Red (2002),5.0,2.704846
+rw5491288,Birds of Prey (2020),2.5,3.6604722
+rw1797429,Rachel River (1987),4.5,2.6447606
+rw4775919,Rafiki (2018),4.5,3.2640712
+rw2116302,Inglourious Basterds (2009),5.0,3.6475937
+rw2585264,The Others (2001),4.5,3.1378505
+rw1832100,The Pirates Who Don't Do Anything: A VeggieTales Movie (2008),3.5,3.64852
+rw5838675,Where the Water Runs (2018),1.0,3.6391606
+rw5782242,Mrs. Serial Killer (2020),5.0,4.0979486
+rw4681382,Goodnight Mommy (2014),3.0,3.8217635
+rw1933918,Swept Away (2002),4.5,4.0477495
+rw4182890,Black Lightning (2017– ),4.0,3.4308782
+rw2879302,Can-Can (1960),3.5,3.7474742
+rw3071530,Alludu Seenu (2014),1.0,2.5979826
+rw0720372,The Matrix Revolutions (2003),4.0,3.6938405
+rw1029323,The Notebook (2004),1.0,3.7927995
+rw5171448,Heavenkid (2014 TV Short),5.0,2.5895913
+rw5587580,Alien (1979),4.0,3.1385763
+rw3519254,Suicide Squad (2016),5.0,2.7248077
+rw5239154,Spider-Man (2002),5.0,3.403876
+rw3697243,Z Nation (2014–2018),4.5,3.6391606
+rw4468316,Love in Design (2018 TV Movie),5.0,3.27583
+rw2056715,The Godfather (1972),4.5,3.9773967
+rw0609222,But I'm a Cheerleader (1999),3.0,3.291659
+rw0057505,The Court Jester (1955),4.5,3.5283082
+rw4913897,Godzilla: King of the Monsters (2019),2.5,3.3100593
+rw3213896,Furious 7 (2015),4.5,2.8618877
+rw0880467,The Texas Chainsaw Massacre (2003),3.5,3.5687585
+rw5239386,Desus & Mero (2019– ),5.0,3.3655014
+rw0653847,Moulin Rouge! (2001),5.0,3.0577703
+rw3345888,Le beau monde (2014),2.0,3.9305935
+rw4699859,Dark House (2009),4.0,4.043505
+rw1322384,Targets (1968),0.5,3.8824074
+rw2151529,Fanboys (2009),3.5,2.5634983
+rw6189463,The Paramedic (2020),2.5,3.3822777
+rw4257087,Psychomanteum (2018),5.0,3.4927306
+rw5201661,It (I) (2017),2.5,3.6163678
+rw3617262,Passengers (I) (2016),4.0,2.851739
+rw5710588,Day of the Dead: Bloodline (2017),2.5,3.0088332
+rw5654279,Impractical Jokers: The Movie (2020),4.5,3.8112016
+rw1072776,Hunting Season (2000 Video),1.0,3.039756
+rw1160592,The Phantom of the Opera (2004),5.0,3.1003103
+rw2020618,Homeward Bound: The Incredible Journey (1993),3.5,3.0289757
+rw3493381,Captain America: Civil War (2016),3.0,3.6263168
+rw2888741,Man of Steel (2013),2.0,3.851754
+rw1347838,Thirteen (2003),5.0,4.0892453
+rw6107437,Kiss the Girls (1997),2.5,3.7597365
+rw3072526,Skylark (1941),3.5,4.0658965
+rw0521898,Fight Club (1999),5.0,3.035605
+rw2741878,少年Pi的奇幻漂流 (2012),5.0,3.0375423
+rw1027778,The Seekers (2003 Video),1.5,2.7721736
+rw6410559,Wonder Woman 1984 (2020),5.0,2.9011471
+rw2755332,Holy Motors (2012),1.0,3.1350741
+rw5713462,Velvet Nagaram (2020),4.5,3.6391606
+rw0234879,Manhunter (1986),5.0,2.6546912
+rw0991632,Schindler's List (1993),5.0,3.275657
+rw0458234,The Lord of the Rings: The Fellowship of the Ring (2001),5.0,3.441642
+rw3610282,The Two Faces of January (2014),3.5,2.9486852
+rw1779684,Ghost Rider (2007),2.0,3.2975128
+rw4723153,Masaan (2015),5.0,3.2842622
+rw2003911,Twilight (I) (2008),1.5,3.34146
+rw2282741,Japón (2002),0.5,3.9793136
+rw0694581,The Dead Hate the Living! (2000 Video),3.0,2.4572754
+rw4802843,Exo-Man (1977 TV Movie),2.0,3.1824753
+rw1895741,The Happening (2008),0.5,3.4154212
+rw3115761,Enemy (2013),4.0,3.5401387
+rw4823532,Matriarch (I) (2018),3.0,3.8276882
+rw0161146,The Last Romantic Lover (1978),4.5,3.6391606
+rw2508192,W.E. (2011),5.0,2.538869
+rw1359437,The Mission (1986),5.0,3.2726846
+rw5260836,Noelle (2019),4.0,3.1597586
+rw2337968,Miesten vuoro (2010),4.5,2.8980374
+rw2816082,World War Z (2013),4.0,3.2964427
+rw4898763,Aamir (2008),3.5,2.5806212
+rw4910611,Chernobyl (2019),5.0,4.3975387
+rw1381119,Over the Hedge (2006),4.0,3.132038
+rw5690904,Normal People (2020),5.0,3.6391606
+rw0742606,How to Lose a Guy in 10 Days (2003),3.0,3.3291602
+rw4326481,Tomb Raider (2018),1.5,4.1078196
+rw1870332,Kannathil Muthamittal (2002),4.0,4.028266
+rw2342571,The Walking Dead (2010– ),1.0,3.0031257
+rw2889991,Iron Man Three (2013),1.5,3.6562545
+rw6390824,Words on Bathroom Walls (2020),5.0,3.5759816
+rw1120692,The Forgotten (2004),3.5,3.1660202
+rw3287930,Creep (I) (2014),1.0,3.3051312
+rw0016713,A Night of Terror (1937),3.5,3.9249523
+rw0806325,Teenage Caveman (2002 TV Movie),5.0,3.179193
+rw1845566,Bratz (2007),2.5,3.377603
+rw3688887,The Promise (II) (2016),5.0,3.8618026
+rw4100431,Wonder Woman (2017),5.0,3.2315598
+rw3675666,Moana (I) (2016),5.0,3.6469226
+rw2889224,We Will Riot (2013),0.5,3.6391606
+rw0897290,Lost in Translation (2003),0.5,2.9445777
+rw4561390,Mary Poppins Returns (2018),0.5,3.0642643
+rw4933303,The Favourite (2018),2.5,2.8074918
+rw5567228,The Good Liar (2019),3.5,3.095723
+rw4364276,The Resident (2018– ),0.5,2.6175604
+rw5261542,One Piece: Stampede (2019),4.0,2.6267967
+rw4994978,"Dark, Deadly & Dreadful (2018)",2.5,2.397816
+rw3217455,Get Hard (2015),1.5,3.4878526
+rw1232487,Schindler's List (1993),0.5,3.275657
+rw1174056,The Aristocrats (2005),0.5,3.0526848
+rw4549308,The Strangers: Prey at Night (2018),1.5,3.0015852
+rw4641267,Charlie Chan in Panama (1940),3.0,3.5511005
+rw2982413,Argo (2012),1.0,3.2703025
+rw4326069,Mother! (2017),3.5,2.9584138
+rw6013672,Host (II) (2020),2.5,4.417714
+rw0746324,Last Orders (2001),3.5,3.9149837
+rw2639699,Madhosh (1994),3.0,3.3543808
+rw1781732,"Paris, je t'aime (2006)",4.0,3.2383473
+rw2961344,Jacob's Ladder (I) (1990),4.5,3.4083467
+rw6360663,Would You Rather (2012),4.0,3.148239
+rw4904454,The Terminator (1984),4.0,3.8894925
+rw3730710,Jackie (V) (2016),3.5,3.4015756
+rw2098855,Mexicali Shmoes (1959),4.5,3.9909165
+rw4526499,The Santa Clause (1994),2.0,3.6382701
+rw1150895,Deuce Bigalow: European Gigolo (2005),4.5,3.3744102
+rw6336754,Star Wars: The Rise Of Skywalker (2019),0.5,2.506704
+rw3786136,The Defenders (2017),0.5,2.8421478
+rw4742328,Dragged Across Concrete (2018),5.0,2.6791534
+rw1693902,Legend (1985),2.5,2.4947987
+rw3056602,A Most Wanted Man (2014),3.5,3.1816459
+rw2955684,In the Name of the King: The Last Mission (2014),2.0,2.8704796
+rw4910429,Friday the 13th Part 2 (1981),3.5,3.5872855
+rw1015738,Alexander (2004),0.5,3.8926888
+rw5530542,Baaghi 3 (2020),0.5,3.0294318
+rw3170589,Whiplash (2014),0.5,3.8450418
+rw3431734,M (1931),5.0,4.042425
+rw4988542,The Last Black Man in San Francisco (2019),4.0,2.7574306
+rw4077646,The Purge: Election Year (2016),2.5,2.8728573
+rw3458882,For Love of the Game (1999),4.5,4.0234337
+rw2928038,Airplane II: The Sequel (1982),3.0,3.8106608
+rw4439482,The Equalizer 2 (2018),2.5,3.2230103
+rw3813363,Leatherface (2017),2.5,3.3820972
+rw5487323,Midway (2019),1.5,3.152918
+rw2627258,The Woman in Black (2012),5.0,3.1411831
+rw4309258,Ghoul (2018– ),0.5,3.6755967
+rw5789241,The Black Glove (1954),3.5,3.056607
+rw1811497,Meet the Spartans (2008),5.0,2.5080984
+rw5687763,Marriage Palace (2018),1.5,3.8520768
+rw2576499,A Separation (2011),5.0,3.547865
+rw3367875,The Descent (2005),1.5,3.2236462
+rw5846241,Grabbers (2012),3.5,3.2044864
+rw3228072,Singin' in the Rain (1952),5.0,3.2222908
+rw6327230,Star Wars: Episode VIII - The Last Jedi (2017),5.0,3.089822
+rw5819944,The Night Clerk (2020),1.5,3.4291298
+rw2301703,Piranha 3D (2010),4.0,2.9594
+rw3218115,David and Goliath (2015),0.5,4.0543623
+rw3159082,The Bay (II) (2012),3.5,3.2792866
+rw6357076,Across the Universe (2007),5.0,3.9809012
+rw1155363,Groundhog Day (1993),5.0,3.3350863
+rw3028420,Apartment 1303 3D (2012),1.5,3.3520267
+rw0013682,The Gay Deception (1935),4.0,3.9237685
+rw0399208,Werewolf (1995 Video),4.0,2.8641126
+rw2259234,Sex and the City 2 (2010),4.5,3.5675843
+rw4905711,What/If (2019– ),2.5,2.5577018
+rw1366833,Mozart and the Whale (2005),2.5,3.0358438
+rw1798144,Forbidden Foot (2007 Video),5.0,2.261874
+rw0739487,The Other Side of Heaven (2001),4.5,2.6665006
+rw0702532,Dragonard (1987),1.5,2.8436935
+rw2780290,Hyde Park on Hudson (2012),5.0,3.8130906
+rw2947669,Home Sweet Home (1981),0.5,2.7587912
+rw5705507,Emo the Musical (2016),0.5,3.9650218
+rw4674713,Star Wars: Episode II - Attack of the Clones (2002),2.5,3.2834427
+rw5508647,Raggs (2006–2009),4.0,2.780836
+rw5995879,Khuda Haafiz (2020),4.5,3.420913
+rw4978759,Midsommar (2019),4.5,2.818509
+rw0556160,Drop Dead Gorgeous (1999),1.0,4.5773134
+rw5386888,Solo: A Star Wars Story (2018),3.0,3.4564502
+rw5392142,Freddy Got Fingered (2001),4.0,4.7527213
+rw4098900,Genuine Nerd (2006 Video),2.0,3.6391606
+rw2528851,Walking Tall (2004),5.0,3.1625714
+rw3071203,The Purge: Anarchy (2014),4.0,3.4191048
+rw0378089,Bad Moon (1996),0.5,3.2461288
+rw4449504,Tremors (1990),4.5,4.2624884
+rw5546246,12 Strong (2018),4.0,3.0908558
+rw3269334,Terminator Genisys (2015),2.5,3.470729
+rw2521139,Red State (2011),3.5,3.2953537
+rw5526075,Every Time I Die (2019),5.0,3.1385427
+rw2594794,American Reunion (2012),3.5,3.2349095
+rw4818529,The Golden Child (1986),5.0,2.4790175
+rw1313814,Klik (2005),3.5,3.6391606
+rw3345559,The Hallow (2015),3.5,4.2698846
+rw2044045,UFC 1: The Beginning (1993 TV Special),4.0,3.1786666
+rw5694763,The Sopranos (1999–2007),5.0,3.512162
+rw4233730,Strokes of Genius (2018),5.0,3.5053554
+rw5218762,Housefull 4 (2019),5.0,2.735446
+rw2705474,Universal Soldier: Day of Reckoning (2012),5.0,2.980158
+rw1125390,Star Wars: Episode III - Revenge of the Sith (2005),3.5,3.754787
+rw5604182,Lionheart (1990),3.0,3.4008107
+rw1006685,Saimin (1999),1.5,3.3558476
+rw6399040,Baby Driver (2017),4.5,3.5659108
+rw4187679,Shadowhunters (2016–2019),4.5,3.4052644
+rw5618042,The Terror (2018– ),4.5,4.085676
+rw6068054,Leaving Neverland (2019),0.5,2.5972428
+rw2070795,Jurassic Park (1993),4.5,3.9169278
+rw1534094,Turbo: A Power Rangers Movie (1997),4.0,3.6787002
+rw4211184,The Girl with a Pistol (1968),3.5,3.129846
+rw0930123,Slasher (2004 TV Movie),5.0,2.9567533
+rw3089121,Citizen Kane (1941),5.0,3.304227
+rw1586689,Once Upon a Time in the West (1968),5.0,2.8358765
+rw6452272,Fast & Furious Presents: Hobbs & Shaw (2019),4.5,2.5408359
+rw5453746,The Man Who Shot Liberty Valance (1962),4.5,3.5510006
+rw1925182,The Dark Knight (2008),5.0,3.8516674
+rw5250565,Tolkien (2019),3.5,3.027512
+rw5086849,The Kitchen (2019),3.5,3.0278344
+rw3429962,The Martian (2015),5.0,3.8575082
+rw2572042,A Single Man (2009),5.0,3.4471679
+rw0763564,Jeepers Creepers (2001),1.0,2.95391
+rw6180923,Millennium (2010),4.0,2.9265974
+rw1472597,The King of Marvin Gardens (1972),5.0,4.63147
+rw2120476,Vantage Point (2008),3.5,3.7175682
+rw1813323,Brigadoon (1954),3.0,3.3540816
+rw0921456,Ju-on: The Grudge (2002),5.0,3.1496158
+rw4949722,Dead Ringers (1988),5.0,3.3606136
+rw5965845,Knives Out (2019),4.0,3.114976
+rw1866734,Libera (1993),4.0,3.0593433
+rw3163598,The Pact (II) (2012),4.0,3.0384872
+rw3853673,The Ghost Writer (2010),4.0,2.403144
+rw4479349,Venom (2018),5.0,3.2625756
+rw2531925,Cops (1989–2020),2.0,3.1750817
+rw4159903,The Hive (2014),3.5,3.4621074
+rw6048504,The Born Losers (1967),4.0,2.3998313
+rw2897200,Star Wars: Episode V - The Empire Strikes Back (1980),5.0,3.5462303
+rw0655240,Nobody (1999),1.0,3.40075
+rw4891134,Chandigarh Amritsar Chandigarh (2019),5.0,3.2308564
+rw2415549,Backwash (2010– ),5.0,2.8391693
+rw3487898,Gyakushû! Satsujin ken (1974),2.0,3.4340165
+rw3748456,The Mist (2017),3.0,3.7264931
+rw0560047,Cold Mountain (2003),2.0,3.1275964
+rw3056413,The Glass House (2001),2.0,3.4598007
+rw5229138,From Russia with Love (1963),4.0,3.022859
+rw1935473,One Flew Over the Cuckoo's Nest (1975),0.5,4.1213894
+rw4584804,Walt Before Mickey (2015),3.5,3.2210877
+rw4553889,Bird Box (2018),2.0,2.5597088
+rw5240510,Dancer in the Dark (2000),2.5,2.270165
+rw2378427,Broken Embraces (2009),4.5,2.8726678
+rw1386820,Into the West (2005),4.0,4.1935134
+rw5505793,Ghostbusters: Answer the Call (2016),5.0,3.0635471
+rw4891742,Paranormal Investigation (2018),5.0,3.3836987
+rw3696337,Power Rangers (2017),3.0,3.2592869
+rw0766230,Frailty (2001),3.0,3.2191188
+rw4941331,Spy (2015),3.5,2.7902122
+rw0611296,Requiem for a Dream (2000),5.0,2.6713758
+rw5500128,Hunters (2020– ),0.5,3.6391606
+rw4158846,Demon House (2019),5.0,3.6391606
+rw4332398,Pulp Fiction (1994),5.0,4.3318357
+rw2673942,The Elder Scrolls V: Skyrim (2011 Video Game),5.0,3.6002269
+rw3628202,Silence (I) (2016),0.5,3.8128695
+rw5447934,Darbar (2020),2.0,3.8473675
+rw1711258,Vampire Hunter D: Bloodlust (2000),4.5,2.4175735
+rw2877103,Don Jon (2013),4.5,3.5805562
+rw2366704,The King's Speech (2010),4.0,3.2140107
+rw0788619,The Hours (2002),2.0,2.8273587
+rw2280660,The Return of Captain Invincible (1983),3.5,3.0545678
+rw5576948,Black Sails (2014–2017),4.5,3.3278923
+rw3029629,June Bride (1948),4.5,3.110083
+rw0461541,The Lord of the Rings: The Fellowship of the Ring (2001),5.0,3.441642
+rw1608029,Waist Deep (2006),2.0,3.1107953
+rw1196588,City of God (2002),5.0,3.6170838
+rw0567591,Sleepy Hollow (1999),4.0,3.463245
+rw1199789,The Nightmare Before Christmas (1993),5.0,3.288316
+rw1772973,Stand by Me (1986),5.0,3.0570266
+rw0560560,Our Mr. Sun (1956 TV Movie),0.5,3.2193885
+rw2297124,The Other Guys (2010),0.5,3.8970687
+rw5530345,We Stand United (1999),2.5,3.9313316
+rw5486447,Fantastic Four (2015),2.5,2.7388787
+rw5466818,Locke & Key (2020– ),5.0,3.0589573
+rw5181011,獅子王 (2019),1.5,4.2297263
+rw1290556,London (I) (2005),3.5,3.0484347
+rw0678998,Pearl Harbor (2001),0.5,2.1548061
+rw2526443,How the Grinch Stole Christmas! (1966 TV Movie),3.5,4.398463
+rw1024635,The Notebook (2004),5.0,3.7927995
+rw4582664,The Accidental Prime Minister (2019),5.0,3.9856076
+rw4528958,Aquaman (2018),4.5,3.0794759
+rw2706533,邊疆 (2010),4.0,3.595258
+rw2407015,Perfect Couples (2010–2011),0.5,3.7466958
+rw6167930,Hubie Halloween (2020),0.5,3.2458072
+rw4774101,Black Summer (2019– ),0.5,3.6391606
+rw3397411,The Martian (2015),5.0,3.8575082
+rw1533137,Raise Your Voice (2004),4.0,4.101551
+rw3172615,Hector and the Search for Happiness (2014),4.5,2.5933852
+rw5580009,Tower of Evil (1972),3.5,3.7802072
+rw2939663,The Great Adventure (1963–1964),5.0,3.7262845
+rw3435269,Alice Doesn't Live Here Anymore (1974),4.0,3.759634
+rw4061026,Ellery Queen's Penthouse Mystery (1941),3.0,2.840921
+rw3504549,Booze Traveler (2014– ),4.5,4.844635
+rw2979653,Highway (I) (2014),4.0,3.3541062
+rw3240073,Chef (2014),5.0,3.067187
+rw1219115,My Cousin Vinny (1992),5.0,4.0093
+rw2388171,Hologram Man (1995 Video),2.0,4.286746
+rw1772663,The Elephant Man (1980),4.0,3.1746054
+rw1659554,Shrek the Third (2007),1.5,3.8605525
+rw5452272,"Beg, Borrow or Steal (1937)",3.5,3.5506802
+rw4410143,Inception (2010),5.0,3.6620421
+rw6285063,Transplant (2020– ),5.0,3.6391606
+rw1794193,The Zombie Diaries (2006),0.5,3.7241364
+rw1788859,Reservoir Dogs (2006 Video Game),3.5,3.1632361
+rw3556678,Scarface (1932),4.5,3.5734649
+rw2289576,Il capo dei capi (2007– ),5.0,2.8824892
+rw1221039,The Man Who Wasn't There (2001),5.0,3.9316113
+rw1557847,City Slickers (1991),5.0,3.2355247
+rw0814307,Signs (2002),5.0,3.2230248
+rw2998397,People Like Us (2012),3.0,2.4732013
+rw2664982,Jack-Jack Attack (2005 Video),4.5,3.6020324
+rw5079153,The Basement (II) (2018),0.5,2.9319773
+rw4736128,Default (2018),5.0,3.031009
+rw3557706,The Machinist (2004),3.0,3.472271
+rw1131584,Charlie and the Chocolate Factory (2005),2.0,3.4941154
+rw2851238,Teen Wolf (2011–2017),2.5,3.1015
+rw5832258,"Hello, Privilege. It's Me, Chelsea (2019 TV Movie)",4.5,3.609883
+rw4584788,Bird Box (2018),1.0,2.5597088
+rw5985525,G.I. Blues (1960),3.0,2.7723796
+rw1774563,"Lust, Caution (2007)",3.5,3.0099838
+rw1378508,Noah's Ark (1999– ),0.5,3.4373631
+rw1756248,Britz (2007 TV Movie),0.5,3.377603
+rw1795628,Titanic (1997),4.5,3.8622978
+rw4516088,Thank God It's Friday (1978),0.5,3.588635
+rw2929041,The Lives of Others (2006),4.5,3.291486
+rw6066277,Mulan (2020),5.0,2.7787504
+rw2257431,St. Elmo's Fire (1985),3.0,3.4052448
+rw3414616,Deadpool (2016),4.0,4.177141
+rw1661992,Pirates of the Caribbean: At World's End (2007),0.5,3.2679718
+rw6410610,Eddie the Eagle (2015),5.0,4.644356
+rw1654025,Spider-Man 3 (2007),4.0,3.0433857
+rw4100254,Kadamban (2017),0.5,4.170588
+rw6306146,Gremlins 2: The New Batch (1990),4.5,3.3990536
+rw5176309,蝙蝠女俠 (2019– ),0.5,3.9811897
+rw1417382,Il mondo dei sensi di Emy Wong (1977),4.5,3.6324112
+rw4812060,Warehouse 13 (2009–2014),4.5,4.106517
+rw5920543,Line of Duty (2019),0.5,3.247623
+rw2422021,The American (2010),3.0,3.2730098
+rw5059920,This Country (2017–2020),4.0,3.6391606
+rw1125359,"Snow Day, Bloody Snow Day (2005)",3.0,2.881148
+rw2992364,The Grand Budapest Hotel (2014),5.0,2.6991878
+rw4569308,Jamesy Boy (2014),5.0,3.736752
+rw2532860,The Brain Machine (1977),1.0,2.7023458
+rw0830047,The Transporter (2002),3.5,4.3455286
+rw1577692,The Adventures of Rocky & Bullwinkle (2000),2.5,3.1485705
+rw2805454,Byzantium (2012),3.5,3.4139698
+rw2587676,The Girl Who Kicked the Hornet's Nest (2009),2.5,3.4737906
+rw6411557,Wonder Woman 1984 (2020),1.5,2.9011471
+rw5015273,The Lion King (2019),2.0,4.2297263
+rw3649581,The Skipper Surprised His Wife (1950),2.5,3.948539
+rw1889307,After the Promise (1987 TV Movie),5.0,2.777855
+rw5343763,STAR WARS：原力覺醒 (2015),5.0,2.7502944
+rw5147309,建軍大業 (2017),3.0,3.2314
+rw4155631,Tap Roots (1948),3.0,3.7079449
+rw1714015,Nightmare (1981),2.0,2.7003174
+rw0261126,Pumpkinhead (1988),4.0,2.677422
+rw4716861,Star Wars: Episode VIII - The Last Jedi (2017),0.5,3.089822
+rw3012847,The Amazing Spider-Man 2 (2014),1.5,3.3095424
+rw1859710,Manhattan (1979),5.0,4.614122
+rw3446751,Agents of S.H.I.E.L.D. (2013–2020),3.5,3.4648566
+rw6367815,Nosferatu the Vampyre (1979),5.0,3.539402
+rw0096543,Blast-Off Girls (1967),3.5,3.5421627
+rw4270980,A Quiet Place (2018),1.5,3.255436
+rw4352881,College Romance (2018– ),5.0,4.711819
+rw4862949,Wreck-It Ralph (2012),4.0,3.8460288
+rw1641911,The Good Shepherd (2006),3.5,2.835193
+rw6317410,Another Life (2019– ),4.0,2.6604893
+rw3298908,Mother (2015),3.5,3.961972
+rw5851554,Driven to Dance (2018),0.5,2.6367145
+rw3625070,Hidden Figures (2016),5.0,3.1182146
+rw4076779,Sweet Revenge (2001),1.0,3.082107
+rw2109925,Harry Potter and the Half-Blood Prince (2009),4.5,2.907892
+rw4435271,The Raid: Redemption (2011),5.0,3.4627433
+rw5037170,The Duel (I) (2016),2.0,3.2948895
+rw4354191,Westworld (1973),4.0,3.1802351
+rw4555254,In Your Hands (2018),0.5,4.726209
+rw4251772,The Hollywouldn'ts (2016),5.0,3.0877073
+rw1725915,The Four Feathers (2002),0.5,3.7591763
+rw1380685,Nanny McPhee (2005),5.0,3.892547
+rw0487849,Wild Innocence (1936),3.5,3.6391606
+rw2529801,Advise & Consent (1962),4.0,3.8276627
+rw2052614,Mississippi Masala (1991),1.0,3.614862
+rw0041022,She Wore a Yellow Ribbon (1949),4.0,4.0118647
+rw5792705,Mission: Impossible II (2000),2.5,3.6304393
+rw4781569,True Detective (2014– ),4.5,3.3403306
+rw4077034,Ulkuthu (2017),5.0,2.67797
+rw4640525,Blue My Mind (2017),3.0,2.5660827
+rw3498853,Independence Day: Resurgence (2016),1.5,2.576777
+rw4270197,Olaf's Frozen Adventure (2017),3.0,4.2327127
+rw1966062,City by the Sea (2002),3.5,3.4897475
+rw1666479,Sophie's Choice (1982),4.5,3.4090374
+rw2215109,Sorority Wars (2009 TV Movie),3.5,2.3542218
+rw3307618,Descendants (2015 TV Movie),2.0,3.4381523
+rw4753239,Knock Knock (I) (2015),0.5,3.3392854
+rw0866860,What a Wedding (I) (2003),4.0,3.1791725
+rw1698534,The Old Barn (1929),1.5,3.6391606
+rw4168958,Deadpool 2 (2018),3.5,3.5197823
+rw2027984,Them (2006),4.5,3.0532563
+rw1441065,World Trade Center (2006),5.0,3.6489215
+rw5596059,All My Husband's Wives (2019 TV Movie),5.0,3.028162
+rw5245646,Vaxxed II: The People's Truth (2019),0.5,2.6190069
+rw5901613,Mafia (2020– ),2.5,2.9770486
+rw5746266,Ultraviolet (2017– ),5.0,3.086081
+rw2463517,Resident Evil: Afterlife (2010),3.5,4.1978364
+rw1977309,Libero (2005),5.0,3.7914863
+rw5000022,The Answer (I) (2015),4.5,3.598083
+rw5013460,Un couteau dans le coeur (2018),4.5,2.8648162
+rw3096593,Superman III (1983),4.5,3.4861972
+rw2548339,Bram Stoker's Dracula (1992),3.5,2.8948054
+rw0324362,Kalifornia (1993),5.0,3.5005345
+rw4399509,True Detective (2014– ),3.0,3.3403306
+rw2861950,The Backwoods (2006),2.5,3.5721936
+rw3509311,Ghostbusters (2016),4.5,3.0635471
+rw4163821,Timeless (2016–2018),3.5,3.286675
+rw5471582,Stranger Things (2016– ),4.0,3.6391606
+rw2665330,Meeting Evil (2012),2.5,3.2358203
+rw2993578,Ruby Gentry (1952),5.0,3.394794
+rw1969707,The Strangers (2008),0.5,2.6920424
+rw1686991,I Dream of Jeanie (1952),3.0,3.1837072
+rw4304080,Dead Woman's Hollow (2013),0.5,2.8284361
+rw2536778,In the Land of Blood and Honey (2011),5.0,4.3069444
+rw5031807,Bodyguard (2018),4.0,3.2480342
+rw3402309,Furious 7 (2015),3.5,2.8618877
+rw0633978,Elephant Juice (1999),4.0,3.8316402
+rw1350995,Silent Hill (2006),2.5,4.1050215
+rw5934972,Dil Bechara (2020),5.0,4.267648
+rw3037673,The Raid 2 (2014),5.0,3.1996427
+rw2519991,Breakfast in Hollywood (1946),3.0,3.8070812
+rw0653942,Moulin Rouge! (2001),4.5,3.0577703
+rw1233895,It's All About Love (2003),0.5,3.3009286
+rw1586311,Georgy Girl (1966),4.5,4.3705735
+rw4249573,Sorry to Bother You (2018),3.5,3.597411
+rw4374261,Venom (2018),5.0,3.2625756
+rw5202192,The Shawshank Redemption (1994),4.5,4.693608
+rw4183769,Solo: A Star Wars Story (2018),3.0,3.4564502
+rw2355237,Black Swan (2010),2.0,3.9514046
+rw4298906,Winchester '73 (1950),3.5,3.5480545
+rw1908931,Revolver (2005),1.0,2.6983094
+rw2694432,超級戰艦 (2012),5.0,2.876483
+rw4886359,Outrageous Fortune (1987),1.5,3.9395962
+rw5182646,"Mumsy, Nanny, Sonny & Girly (1970)",4.0,3.5286365
+rw6261658,A Very Charming Christmas Town (2020 TV Movie),3.0,2.750711
+rw6261267,Laxmii (2020),0.5,2.8445582
+rw2215131,District 9 (2009),4.0,3.3167012
+rw1823716,Juno (2007),0.5,3.940229
+rw3197403,The Godfather (1972),5.0,3.9773967
+rw3379289,The Wave (2015),0.5,4.1956387
+rw4888079,Roma (2018),3.0,3.9166589
+rw5393544,Midsommar (2019),1.0,2.818509
+rw5485441,Love Aaj Kal (2020),5.0,2.7972455
+rw0625134,House on Haunted Hill (1999),2.0,3.214938
+rw1111897,Après Vous (2003),0.5,2.8941436
+rw6101553,Mississippi Grind (2015),1.0,3.6829033
+rw3158569,英雄 (2002),3.5,2.5374599
+rw2583462,Le renard et l'enfant (2007),4.0,4.303384
+rw5273388,All These Women (1964),1.5,3.0261276
+rw4463482,Bohemian Rhapsody (2018),5.0,4.469945
+rw5194437,The Swimmer (1968),4.0,4.137812
+rw0849385,Harry Potter en de gevangene van Azkaban (2004),4.0,3.014013
+rw3523548,Arsenic and Old Lace (1944),4.0,3.2396317
+rw4184486,Cobra Kai (2018– ),4.5,3.1779258
+rw3499569,The Good Dinosaur (2015),3.0,3.1938214
+rw4971628,Gloria Bell (2018),1.0,3.1986275
+rw2110358,The Green Mile (1999),5.0,3.5377934
+rw2999004,The Bag Man (I) (2014),4.5,3.0470126
+rw4722653,The Commuter (I) (2018),2.5,3.1749578
+rw2383514,Final Exam (1981),5.0,2.73745
+rw2264228,Impact (2009– ),3.0,3.465079
+rw1624436,德州電鋸殺人狂3 (1990),5.0,2.5750513
+rw1264750,Zinda (2006),3.5,3.0465884
+rw1626753,The Circle (2002),5.0,3.530651
+rw1141982,"I, Madman (1989)",4.0,3.468916
+rw3784270,Gifted (2017),4.0,2.8365483
+rw2439142,Hara-Kiri (1962),4.0,3.936304
+rw0375379,While You Were Sleeping (1995),5.0,3.4864228
+rw2406327,Escape by Night (1937),2.0,3.4243712
+rw5469858,Shikara (2020),0.5,3.3012416
+rw3023847,Below (2002),3.5,2.8406348
+rw1097531,House of Wax (2005),4.0,3.360072
+rw3126646,Out of the Furnace (2013),4.5,3.0974164
+rw3830179,Dynasty (2017– ),5.0,3.7335033
+rw1946231,Troll (1986),2.5,3.4780896
+rw3380332,Star Wars: Episode VII - The Force Awakens (2015),2.5,2.7502944
+rw2908307,The Hunger Games: Catching Fire (2013),4.5,2.7796686
+rw4715467,God Friended Me (2018–2020),0.5,4.05123
+rw2995533,Major League II (1994),4.0,3.7049408
+rw0219214,The Breakfast Club (1985),4.5,3.537458
+rw5072015,Daughter of the Wolf (2019),1.5,2.6025348
+rw5227828,Kaappaan (2019),1.5,3.0435314
+rw5977994,Bandish Bandits (2020– ),5.0,2.947591
+rw1316841,The Field (1990),4.5,2.753505
+rw2136025,Eraser Children (2009),5.0,3.6391606
+rw3451278,Batman v Superman: Dawn of Justice (2016),3.5,3.2697155
+rw3838878,Wonder Woman (2017),5.0,3.2315598
+rw4505321,American Made (2017),3.0,3.180389
+rw1717691,Planet Terror (2007),3.5,3.0433033
+rw6106887,Dolly Kitty and Those Twinkling Stars (2019),1.5,3.1575737
+rw3264867,Big Jim McLain (1952),3.0,2.7988238
+rw5869772,Adrift (I) (2018),4.5,2.8576908
+rw1003946,The Phantom of the Opera (2004),5.0,3.1003103
+rw5655085,Miami Bici (2020),0.5,3.4416676
+rw0131624,"Silent Night, Bloody Night (1972)",5.0,3.9632447
+rw5311701,Possession Diaries (2019),1.0,4.3940926
