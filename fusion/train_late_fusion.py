@@ -1,4 +1,4 @@
-import os
+from pathlib import Path
 import numpy as np
 import pandas as pd
 
@@ -8,34 +8,31 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.pipeline import make_pipeline
 from sklearn.metrics import mean_squared_error, mean_absolute_error, r2_score
 
+SCRIPT_DIR = Path(__file__).resolve().parent
+PROJECT_ROOT = SCRIPT_DIR.parent
 
-# --------------------------------------------------
-# Paths
-# --------------------------------------------------
-IMAGE_TRAIN = "image_branch/data/features/image_oof_stack/predictions/image_oof_stacked_ensemble_train_predictions.csv"
-IMAGE_VAL = "image_branch/data/features/image_oof_stack/predictions/image_oof_stacked_ensemble_val_predictions.csv"
-IMAGE_TEST = "image_branch/data/features/image_oof_stack/predictions/image_oof_stacked_ensemble_test_predictions.csv"
+IMAGE_PREDICTIONS_DIR = PROJECT_ROOT / "image_branch" / "data" / "features" / "image_oof_stack" / "predictions"
+TEXT_PREDICTIONS_DIR = PROJECT_ROOT / "text-branch" / "data" / "features" / "predictions"
 
-TEXT_TRAIN = "ml-project/text/predictions/text_train_predictions.csv"
-TEXT_VAL = "ml-project/text/predictions/text_val_predictions.csv"
-TEXT_TEST = "ml-project/text/predictions/text_test_predictions.csv"
+IMAGE_TRAIN_PRED_PATH = IMAGE_PREDICTIONS_DIR / "image_oof_stacked_ensemble_train_predictions.csv"
+IMAGE_VAL_PRED_PATH = IMAGE_PREDICTIONS_DIR / "image_oof_stacked_ensemble_val_predictions.csv"
+IMAGE_TEST_PRED_PATH = IMAGE_PREDICTIONS_DIR / "image_oof_stacked_ensemble_test_predictions.csv"
 
-OUT_DIR = "fusion"
-RESULTS_DIR = os.path.join(OUT_DIR, "results")
-PRED_DIR = os.path.join(OUT_DIR, "predictions")
+TEXT_TRAIN_PRED_PATH = TEXT_PREDICTIONS_DIR / "text_train_predictions.csv"
+TEXT_VAL_PRED_PATH = TEXT_PREDICTIONS_DIR / "text_val_predictions.csv"
+TEXT_TEST_PRED_PATH = TEXT_PREDICTIONS_DIR / "text_test_predictions.csv"
 
-os.makedirs(RESULTS_DIR, exist_ok=True)
-os.makedirs(PRED_DIR, exist_ok=True)
+FUSION_RESULTS_DIR = SCRIPT_DIR / "results"
+FUSION_PREDICTIONS_DIR = SCRIPT_DIR / "predictions"
 
+FUSION_RESULTS_DIR.mkdir(parents=True, exist_ok=True)
+FUSION_PREDICTIONS_DIR.mkdir(parents=True, exist_ok=True)
 
-# --------------------------------------------------
-# Helpers
-# --------------------------------------------------
-def clip_rating(pred):
-    return np.clip(pred, 0.5, 5.0)
+def clamp_rating_to_scale(predictions):
+    return np.clip(predictions, 0.5, 5.0)
 
 
-def metrics(y_true, y_pred):
+def regression_metrics(y_true, y_pred):
     return {
         "mse": mean_squared_error(y_true, y_pred),
         "mae": mean_absolute_error(y_true, y_pred),
@@ -43,15 +40,15 @@ def metrics(y_true, y_pred):
     }
 
 
-def load_and_merge(text_path, image_path, split_name):
-    text = pd.read_csv(text_path)
-    image = pd.read_csv(image_path)
+def load_and_join_predictions(text_predictions_path, image_predictions_path, split_name):
+    text_pred_df = pd.read_csv(text_predictions_path)
+    image_pred_df = pd.read_csv(image_predictions_path)
 
     required_text = {"id", "y_true", "y_text_pred"}
     required_image = {"id", "y_true", "y_image_pred"}
 
-    missing_text = required_text - set(text.columns)
-    missing_image = required_image - set(image.columns)
+    missing_text = required_text - set(text_pred_df.columns)
+    missing_image = required_image - set(image_pred_df.columns)
 
     if missing_text:
         raise ValueError(f"{split_name} text file missing columns: {missing_text}")
@@ -59,156 +56,128 @@ def load_and_merge(text_path, image_path, split_name):
     if missing_image:
         raise ValueError(f"{split_name} image file missing columns: {missing_image}")
 
-    text["id"] = text["id"].astype(str)
-    image["id"] = image["id"].astype(str)
+    text_pred_df["id"] = text_pred_df["id"].astype(str)
+    image_pred_df["id"] = image_pred_df["id"].astype(str)
 
-    text = text.rename(columns={"y_true": "y_true_text"})
-    image = image.rename(columns={"y_true": "y_true_image"})
+    text_pred_df = text_pred_df.rename(columns={"y_true": "y_true_text"})
+    image_pred_df = image_pred_df.rename(columns={"y_true": "y_true_image"})
 
-    keep_image_cols = ["id", "y_true_image", "y_image_pred"]
-    if "movie_title" in image.columns:
-        keep_image_cols.append("movie_title")
+    image_cols_to_keep = ["id", "y_true_image", "y_image_pred"]
+    if "movie_title" in image_pred_df.columns:
+        image_cols_to_keep.append("movie_title")
 
-    merged = text.merge(
-        image[keep_image_cols],
+    merged_pred_df = text_pred_df.merge(
+        image_pred_df[image_cols_to_keep],
         on="id",
         how="inner",
         suffixes=("_text", "_image")
     )
 
-    if len(merged) == 0:
+    if len(merged_pred_df) == 0:
         raise ValueError(f"{split_name}: merged 0 rows. Text/image ids do not match.")
 
-    max_label_diff = np.max(np.abs(merged["y_true_text"] - merged["y_true_image"]))
-    if max_label_diff > 1e-8:
+    max_label_mismatch = np.max(np.abs(merged_pred_df["y_true_text"] - merged_pred_df["y_true_image"]))
+    if max_label_mismatch > 1e-8:
         raise ValueError(f"{split_name}: y_true values do not match between text and image.")
 
-    merged = merged.rename(columns={"y_true_text": "y_true"})
-    merged = merged.drop(columns=["y_true_image"])
-
-    # Clean movie_title column after merge
-    if "movie_title_text" in merged.columns:
-        merged = merged.rename(columns={"movie_title_text": "movie_title"})
-    elif "movie_title_image" in merged.columns:
-        merged = merged.rename(columns={"movie_title_image": "movie_title"})
-    elif "movie_title" not in merged.columns:
-        merged["movie_title"] = ""
+    merged_pred_df = merged_pred_df.rename(columns={"y_true_text": "y_true"})
+    merged_pred_df = merged_pred_df.drop(columns=["y_true_image"])
+    if "movie_title_text" in merged_pred_df.columns:
+        merged_pred_df = merged_pred_df.rename(columns={"movie_title_text": "movie_title"})
+    elif "movie_title_image" in merged_pred_df.columns:
+        merged_pred_df = merged_pred_df.rename(columns={"movie_title_image": "movie_title"})
+    elif "movie_title" not in merged_pred_df.columns:
+        merged_pred_df["movie_title"] = ""
 
     print(
-        f"{split_name}: text rows={len(text)}, image rows={len(image)}, "
-        f"merged rows={len(merged)}"
+        f"{split_name}: text rows={len(text_pred_df)}, image rows={len(image_pred_df)}, "
+        f"merged rows={len(merged_pred_df)}"
     )
 
-    return merged
+    return merged_pred_df
 
 
-def evaluate_row(model_name, input_name, y_val, val_pred, y_test, test_pred):
-    val_m = metrics(y_val, val_pred)
-    test_m = metrics(y_test, test_pred)
+def build_result_row(model_name, input_name, y_val, val_pred, y_test, test_pred):
+    val_metrics = regression_metrics(y_val, val_pred)
+    test_metrics = regression_metrics(y_test, test_pred)
 
     return {
         "model": model_name,
         "input": input_name,
-        "val_mse": val_m["mse"],
-        "val_mae": val_m["mae"],
-        "val_r2": val_m["r2"],
-        "test_mse": test_m["mse"],
-        "test_mae": test_m["mae"],
-        "test_r2": test_m["r2"],
+        "val_mse": val_metrics["mse"],
+        "val_mae": val_metrics["mae"],
+        "val_r2": val_metrics["r2"],
+        "test_mse": test_metrics["mse"],
+        "test_mae": test_metrics["mae"],
+        "test_r2": test_metrics["r2"],
     }
 
+train_merged_df = load_and_join_predictions(TEXT_TRAIN_PRED_PATH, IMAGE_TRAIN_PRED_PATH, "train")
+val_merged_df = load_and_join_predictions(TEXT_VAL_PRED_PATH, IMAGE_VAL_PRED_PATH, "val")
+test_merged_df = load_and_join_predictions(TEXT_TEST_PRED_PATH, IMAGE_TEST_PRED_PATH, "test")
 
-# --------------------------------------------------
-# Load merged predictions
-# --------------------------------------------------
-train = load_and_merge(TEXT_TRAIN, IMAGE_TRAIN, "train")
-val = load_and_merge(TEXT_VAL, IMAGE_VAL, "val")
-test = load_and_merge(TEXT_TEST, IMAGE_TEST, "test")
+fusion_features_train = train_merged_df[["y_text_pred", "y_image_pred"]].values
+fusion_features_val = val_merged_df[["y_text_pred", "y_image_pred"]].values
+fusion_features_test = test_merged_df[["y_text_pred", "y_image_pred"]].values
 
-X_train = train[["y_text_pred", "y_image_pred"]].values
-X_val = val[["y_text_pred", "y_image_pred"]].values
-X_test = test[["y_text_pred", "y_image_pred"]].values
+ratings_train = train_merged_df["y_true"].astype(float).values
+ratings_val = val_merged_df["y_true"].astype(float).values
+ratings_test = test_merged_df["y_true"].astype(float).values
 
-y_train = train["y_true"].astype(float).values
-y_val = val["y_true"].astype(float).values
-y_test = test["y_true"].astype(float).values
+train_rating_mean = ratings_train.mean()
 
+dummy_val_predictions = np.full_like(ratings_val, train_rating_mean, dtype=float)
+dummy_test_predictions = np.full_like(ratings_test, train_rating_mean, dtype=float)
 
-# --------------------------------------------------
-# Baselines
-# --------------------------------------------------
-train_mean = y_train.mean()
+text_only_val_predictions = clamp_rating_to_scale(val_merged_df["y_text_pred"].values)
+text_only_test_predictions = clamp_rating_to_scale(test_merged_df["y_text_pred"].values)
 
-dummy_val_pred = np.full_like(y_val, train_mean, dtype=float)
-dummy_test_pred = np.full_like(y_test, train_mean, dtype=float)
+image_only_val_predictions = clamp_rating_to_scale(val_merged_df["y_image_pred"].values)
+image_only_test_predictions = clamp_rating_to_scale(test_merged_df["y_image_pred"].values)
 
-text_val_pred = clip_rating(val["y_text_pred"].values)
-text_test_pred = clip_rating(test["y_text_pred"].values)
-
-image_val_pred = clip_rating(val["y_image_pred"].values)
-image_test_pred = clip_rating(test["y_image_pred"].values)
-
-
-# --------------------------------------------------
-# Fusion Model 1: RidgeCV late fusion
-# --------------------------------------------------
-ridge_fusion = make_pipeline(
+ridge_fusion_pipeline = make_pipeline(
     StandardScaler(),
     RidgeCV(alphas=[0.001, 0.01, 0.1, 1.0, 10.0, 100.0])
 )
 
-ridge_fusion.fit(X_train, y_train)
+ridge_fusion_pipeline.fit(fusion_features_train, ratings_train)
 
-ridge_train_pred = clip_rating(ridge_fusion.predict(X_train))
-ridge_val_pred = clip_rating(ridge_fusion.predict(X_val))
-ridge_test_pred = clip_rating(ridge_fusion.predict(X_test))
+ridge_train_predictions = clamp_rating_to_scale(ridge_fusion_pipeline.predict(fusion_features_train))
+ridge_val_predictions = clamp_rating_to_scale(ridge_fusion_pipeline.predict(fusion_features_val))
+ridge_test_predictions = clamp_rating_to_scale(ridge_fusion_pipeline.predict(fusion_features_test))
 
+linear_fusion_model = LinearRegression()
+linear_fusion_model.fit(fusion_features_train, ratings_train)
 
-# --------------------------------------------------
-# Fusion Model 2: Linear regression late fusion
-# --------------------------------------------------
-linear_fusion = LinearRegression()
-linear_fusion.fit(X_train, y_train)
+linear_val_predictions = clamp_rating_to_scale(linear_fusion_model.predict(fusion_features_val))
+linear_test_predictions = clamp_rating_to_scale(linear_fusion_model.predict(fusion_features_test))
 
-linear_val_pred = clip_rating(linear_fusion.predict(X_val))
-linear_test_pred = clip_rating(linear_fusion.predict(X_test))
+best_text_weight = None
+best_weighted_val_mse = float("inf")
 
-
-# --------------------------------------------------
-# Fusion Model 3: Weighted average selected on validation
-# final = w * text + (1-w) * image
-# --------------------------------------------------
-best_w = None
-best_val_mse = float("inf")
-
-for w_text in np.linspace(0, 1, 101):
-    pred = clip_rating(
-        w_text * val["y_text_pred"].values
-        + (1 - w_text) * val["y_image_pred"].values
+for text_weight in np.linspace(0, 1, 101):
+    candidate_val_predictions = clamp_rating_to_scale(
+        text_weight * val_merged_df["y_text_pred"].values
+        + (1 - text_weight) * val_merged_df["y_image_pred"].values
     )
 
-    mse = mean_squared_error(y_val, pred)
+    candidate_val_mse = mean_squared_error(ratings_val, candidate_val_predictions)
 
-    if mse < best_val_mse:
-        best_val_mse = mse
-        best_w = w_text
+    if candidate_val_mse < best_weighted_val_mse:
+        best_weighted_val_mse = candidate_val_mse
+        best_text_weight = text_weight
 
-weighted_val_pred = clip_rating(
-    best_w * val["y_text_pred"].values
-    + (1 - best_w) * val["y_image_pred"].values
+weighted_val_predictions = clamp_rating_to_scale(
+    best_text_weight * val_merged_df["y_text_pred"].values
+    + (1 - best_text_weight) * val_merged_df["y_image_pred"].values
 )
 
-weighted_test_pred = clip_rating(
-    best_w * test["y_text_pred"].values
-    + (1 - best_w) * test["y_image_pred"].values
+weighted_test_predictions = clamp_rating_to_scale(
+    best_text_weight * test_merged_df["y_text_pred"].values
+    + (1 - best_text_weight) * test_merged_df["y_image_pred"].values
 )
 
-
-# --------------------------------------------------
-# Fusion Model 4: Small nonlinear fusion
-# Only 2 inputs, so keep it simple.
-# --------------------------------------------------
-hgb_fusion = HistGradientBoostingRegressor(
+hgb_fusion_model = HistGradientBoostingRegressor(
     max_iter=200,
     learning_rate=0.03,
     max_leaf_nodes=15,
@@ -216,161 +185,147 @@ hgb_fusion = HistGradientBoostingRegressor(
     random_state=42
 )
 
-hgb_fusion.fit(X_train, y_train)
+hgb_fusion_model.fit(fusion_features_train, ratings_train)
 
-hgb_val_pred = clip_rating(hgb_fusion.predict(X_val))
-hgb_test_pred = clip_rating(hgb_fusion.predict(X_test))
+hgb_val_predictions = clamp_rating_to_scale(hgb_fusion_model.predict(fusion_features_val))
+hgb_test_predictions = clamp_rating_to_scale(hgb_fusion_model.predict(fusion_features_test))
 
+result_rows = []
 
-# --------------------------------------------------
-# Results table
-# --------------------------------------------------
-rows = []
-
-rows.append(evaluate_row(
+result_rows.append(build_result_row(
     "Dummy Mean",
     "none",
-    y_val,
-    dummy_val_pred,
-    y_test,
-    dummy_test_pred
+    ratings_val,
+    dummy_val_predictions,
+    ratings_test,
+    dummy_test_predictions
 ))
 
-rows.append(evaluate_row(
+result_rows.append(build_result_row(
     "Text Only",
     "review text",
-    y_val,
-    text_val_pred,
-    y_test,
-    text_test_pred
+    ratings_val,
+    text_only_val_predictions,
+    ratings_test,
+    text_only_test_predictions
 ))
 
-rows.append(evaluate_row(
+result_rows.append(build_result_row(
     "Image Only OOF Stack",
     "poster image",
-    y_val,
-    image_val_pred,
-    y_test,
-    image_test_pred
+    ratings_val,
+    image_only_val_predictions,
+    ratings_test,
+    image_only_test_predictions
 ))
 
-rows.append(evaluate_row(
+result_rows.append(build_result_row(
     "Late Fusion RidgeCV",
     "text + image",
-    y_val,
-    ridge_val_pred,
-    y_test,
-    ridge_test_pred
+    ratings_val,
+    ridge_val_predictions,
+    ratings_test,
+    ridge_test_predictions
 ))
 
-rows.append(evaluate_row(
+result_rows.append(build_result_row(
     "Late Fusion LinearRegression",
     "text + image",
-    y_val,
-    linear_val_pred,
-    y_test,
-    linear_test_pred
+    ratings_val,
+    linear_val_predictions,
+    ratings_test,
+    linear_test_predictions
 ))
 
-rows.append(evaluate_row(
-    f"Weighted Average w_text={best_w:.2f}",
+result_rows.append(build_result_row(
+    f"Weighted Average w_text={best_text_weight:.2f}",
     "text + image",
-    y_val,
-    weighted_val_pred,
-    y_test,
-    weighted_test_pred
+    ratings_val,
+    weighted_val_predictions,
+    ratings_test,
+    weighted_test_predictions
 ))
 
-rows.append(evaluate_row(
+result_rows.append(build_result_row(
     "Late Fusion HistGradientBoosting",
     "text + image",
-    y_val,
-    hgb_val_pred,
-    y_test,
-    hgb_test_pred
+    ratings_val,
+    hgb_val_predictions,
+    ratings_test,
+    hgb_test_predictions
 ))
 
-results = pd.DataFrame(rows).sort_values("val_mse")
-results_path = os.path.join(RESULTS_DIR, "fusion_results.csv")
-results.to_csv(results_path, index=False)
+results_table = pd.DataFrame(result_rows).sort_values("val_mse")
+results_path = FUSION_RESULTS_DIR / "fusion_results.csv"
+results_table.to_csv(results_path, index=False)
 
 print("\nFusion results sorted by validation MSE:")
-print(results.round(4))
+print(results_table.round(4))
 
-
-# --------------------------------------------------
-# Save best fusion test predictions
-# --------------------------------------------------
-best_model_name = results.iloc[0]["model"]
-
-# choose prediction array corresponding to best model
-if best_model_name == "Late Fusion RidgeCV":
-    best_test_pred = ridge_test_pred
-elif best_model_name == "Late Fusion LinearRegression":
-    best_test_pred = linear_test_pred
-elif best_model_name.startswith("Weighted Average"):
-    best_test_pred = weighted_test_pred
-elif best_model_name == "Late Fusion HistGradientBoosting":
-    best_test_pred = hgb_test_pred
-elif best_model_name == "Text Only":
-    best_test_pred = text_test_pred
-elif best_model_name == "Image Only OOF Stack":
-    best_test_pred = image_test_pred
+best_model_label = results_table.iloc[0]["model"]
+if best_model_label == "Late Fusion RidgeCV":
+    best_model_test_predictions = ridge_test_predictions
+elif best_model_label == "Late Fusion LinearRegression":
+    best_model_test_predictions = linear_test_predictions
+elif best_model_label.startswith("Weighted Average"):
+    best_model_test_predictions = weighted_test_predictions
+elif best_model_label == "Late Fusion HistGradientBoosting":
+    best_model_test_predictions = hgb_test_predictions
+elif best_model_label == "Text Only":
+    best_model_test_predictions = text_only_test_predictions
+elif best_model_label == "Image Only OOF Stack":
+    best_model_test_predictions = image_only_test_predictions
 else:
-    best_test_pred = dummy_test_pred
+    best_model_test_predictions = dummy_test_predictions
 
-test_pred_df = pd.DataFrame({
-    "id": test["id"].values,
-    "movie_title": test["movie_title"].values,
-    "y_true": y_test,
-    "y_text_pred": test["y_text_pred"].values,
-    "y_image_pred": test["y_image_pred"].values,
-    "y_ridge_fusion_pred": ridge_test_pred,
-    "y_linear_fusion_pred": linear_test_pred,
-    "y_weighted_fusion_pred": weighted_test_pred,
-    "y_hgb_fusion_pred": hgb_test_pred,
-    "y_best_pred": best_test_pred,
+fusion_test_predictions_df = pd.DataFrame({
+    "id": test_merged_df["id"].values,
+    "movie_title": test_merged_df["movie_title"].values,
+    "y_true": ratings_test,
+    "y_text_pred": test_merged_df["y_text_pred"].values,
+    "y_image_pred": test_merged_df["y_image_pred"].values,
+    "y_ridge_fusion_pred": ridge_test_predictions,
+    "y_linear_fusion_pred": linear_test_predictions,
+    "y_weighted_fusion_pred": weighted_test_predictions,
+    "y_hgb_fusion_pred": hgb_test_predictions,
+    "y_best_pred": best_model_test_predictions,
 })
 
-pred_path = os.path.join(PRED_DIR, "fusion_test_predictions.csv")
-test_pred_df.to_csv(pred_path, index=False)
+pred_path = FUSION_PREDICTIONS_DIR / "fusion_test_predictions.csv"
+fusion_test_predictions_df.to_csv(pred_path, index=False)
 
+ridgecv_model = ridge_fusion_pipeline.named_steps["ridgecv"]
 
-# --------------------------------------------------
-# Save fusion weights
-# --------------------------------------------------
-ridge_model = ridge_fusion.named_steps["ridgecv"]
-
-ridge_weights = pd.DataFrame({
+ridge_weight_table = pd.DataFrame({
     "feature": ["y_text_pred", "y_image_pred"],
-    "ridge_weight_after_scaling": ridge_model.coef_,
+    "ridge_weight_after_scaling": ridgecv_model.coef_,
 })
-ridge_weights["ridge_intercept"] = ridge_model.intercept_
-ridge_weights.to_csv(os.path.join(RESULTS_DIR, "fusion_ridge_weights.csv"), index=False)
+ridge_weight_table["ridge_intercept"] = ridgecv_model.intercept_
+ridge_weight_table.to_csv(FUSION_RESULTS_DIR / "fusion_ridge_weights.csv", index=False)
 
-linear_weights = pd.DataFrame({
+linear_weight_table = pd.DataFrame({
     "feature": ["y_text_pred", "y_image_pred"],
-    "linear_weight": linear_fusion.coef_,
+    "linear_weight": linear_fusion_model.coef_,
 })
-linear_weights["linear_intercept"] = linear_fusion.intercept_
-linear_weights.to_csv(os.path.join(RESULTS_DIR, "fusion_linear_weights.csv"), index=False)
+linear_weight_table["linear_intercept"] = linear_fusion_model.intercept_
+linear_weight_table.to_csv(FUSION_RESULTS_DIR / "fusion_linear_weights.csv", index=False)
 
-weighted_info = pd.DataFrame({
-    "w_text": [best_w],
-    "w_image": [1 - best_w],
-    "val_mse": [best_val_mse],
+weighted_average_info_table = pd.DataFrame({
+    "w_text": [best_text_weight],
+    "w_image": [1 - best_text_weight],
+    "val_mse": [best_weighted_val_mse],
 })
-weighted_info.to_csv(os.path.join(RESULTS_DIR, "fusion_weighted_average_info.csv"), index=False)
+weighted_average_info_table.to_csv(FUSION_RESULTS_DIR / "fusion_weighted_average_info.csv", index=False)
 
 
 print("\nSaved:")
 print(results_path)
 print(pred_path)
-print(os.path.join(RESULTS_DIR, "fusion_ridge_weights.csv"))
-print(os.path.join(RESULTS_DIR, "fusion_linear_weights.csv"))
-print(os.path.join(RESULTS_DIR, "fusion_weighted_average_info.csv"))
+print(FUSION_RESULTS_DIR / "fusion_ridge_weights.csv")
+print(FUSION_RESULTS_DIR / "fusion_linear_weights.csv")
+print(FUSION_RESULTS_DIR / "fusion_weighted_average_info.csv")
 
 print("\nBest model by validation MSE:")
-print(best_model_name)
+print(best_model_label)
 
-print(f"\nBest weighted average: w_text={best_w:.2f}, w_image={1 - best_w:.2f}")
+print(f"\nBest weighted average: w_text={best_text_weight:.2f}, w_image={1 - best_text_weight:.2f}")

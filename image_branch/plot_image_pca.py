@@ -1,28 +1,31 @@
 import os
+from pathlib import Path
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 from sklearn.decomposition import PCA
 
-os.makedirs("data/features/figures", exist_ok=True)
+SCRIPT_DIR = Path(__file__).resolve().parent
+FEATURES_DIR = SCRIPT_DIR / "data" / "features"
+FIGURES_DIR = FEATURES_DIR / "figures"
 
-X = np.load("data/features/X_image_train.npy")
-df = pd.read_json("data/features/train_image_rows.json")
+os.makedirs(FIGURES_DIR, exist_ok=True)
 
-ratings = df["rating"].astype(float).values
+train_feature_matrix = np.load(FEATURES_DIR / "X_image_train.npy")
+train_rows_df = pd.read_json(FEATURES_DIR / "train_image_rows.json")
 
-# Keep plot readable
-n = min(2000, len(df))
-X_sample = X[:n]
-ratings_sample = ratings[:n]
+ratings_train = train_rows_df["rating"].astype(float).values
+num_rows_to_plot = min(2000, len(train_rows_df))
+feature_matrix_sample = train_feature_matrix[:num_rows_to_plot]
+ratings_sample = ratings_train[:num_rows_to_plot]
 
-pca = PCA(n_components=2, random_state=42)
-X_2d = pca.fit_transform(X_sample)
+pca_model = PCA(n_components=2, random_state=42)
+pca_projection_2d = pca_model.fit_transform(feature_matrix_sample)
 
 plt.figure(figsize=(8, 6))
 scatter = plt.scatter(
-    X_2d[:, 0],
-    X_2d[:, 1],
+    pca_projection_2d[:, 0],
+    pca_projection_2d[:, 1],
     c=ratings_sample,
     alpha=0.65,
     s=18
@@ -33,7 +36,7 @@ plt.ylabel("PCA Component 2")
 plt.title("ResNet18 Poster Embeddings Projected with PCA")
 plt.tight_layout()
 
-out_path = "data/features/figures/poster_embedding_pca.png"
-plt.savefig(out_path, dpi=250)
-print("Saved:", out_path)
+pca_plot_path = FIGURES_DIR / "poster_embedding_pca.png"
+plt.savefig(pca_plot_path, dpi=250)
+print("Saved:", pca_plot_path)
 plt.show()

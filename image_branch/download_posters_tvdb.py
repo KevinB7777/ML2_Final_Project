@@ -3,6 +3,7 @@ import re
 import time
 import json
 import requests
+from pathlib import Path
 import pandas as pd
 from tqdm import tqdm
 
@@ -13,8 +14,12 @@ if not API_KEY:
 
 BASE_URL = "https://api4.thetvdb.com/v4"
 
-POSTER_DIR = "data/posters"
-CACHE_PATH = "data/tvdb_poster_cache.json"
+BASE_DIR = Path(__file__).resolve().parent
+DATA_DIR = BASE_DIR / "data"
+PROCESSED_DIR = DATA_DIR / "processed"
+POSTER_DIR = DATA_DIR / "posters"
+CACHE_PATH = DATA_DIR / "tvdb_poster_cache.json"
+POSTER_DIR_REL = Path("data") / "posters"
 
 os.makedirs(POSTER_DIR, exist_ok=True)
 
@@ -31,28 +36,14 @@ def login():
 
 
 def clean_query_title(movie_title):
-    """
-    Examples:
-    'The Matrix Reloaded (2003)' -> 'The Matrix Reloaded'
-    'Mission: Impossible (1966–1973)' -> 'Mission: Impossible'
-    'Sahara (I) (1943)' -> 'Sahara'
-    """
     title = str(movie_title)
-
-    # Remove all parenthetical parts
     title = re.sub(r"\([^)]*\)", "", title)
-
-    # Normalize spaces
     title = re.sub(r"\s+", " ", title).strip()
 
     return title
 
 
 def extract_year(movie_title):
-    """
-    Extracts first 4-digit year from title if available.
-    'The Matrix Reloaded (2003)' -> '2003'
-    """
     match = re.search(r"(18|19|20)\d{2}", str(movie_title))
     if match:
         return match.group(0)
@@ -67,7 +58,7 @@ def safe_filename(text):
 
 
 def load_cache():
-    if os.path.exists(CACHE_PATH):
+    if CACHE_PATH.exists():
         with open(CACHE_PATH, "r") as f:
             return json.load(f)
     return {}
@@ -79,10 +70,6 @@ def save_cache(cache):
 
 
 def search_tvdb(token, movie_title):
-    """
-    Search TheTVDB by movie title.
-    Returns best image_url or None.
-    """
     query = clean_query_title(movie_title)
     expected_year = extract_year(movie_title)
 
@@ -100,14 +87,10 @@ def search_tvdb(token, movie_title):
 
     if not data:
         return None
-
-    # Prefer exact year match if available
     if expected_year:
         for item in data:
             if str(item.get("year")) == expected_year and item.get("image_url"):
                 return item.get("image_url")
-
-    # Otherwise use first result with image_url
     for item in data:
         if item.get("image_url"):
             return item.get("image_url")
@@ -116,7 +99,7 @@ def search_tvdb(token, movie_title):
 
 
 def download_image(url, output_path):
-    if os.path.exists(output_path):
+    if Path(output_path).exists():
         return True
 
     try:
@@ -149,8 +132,6 @@ def get_poster_url_for_title(token, movie_title, cache):
         poster_url = search_tvdb(token, movie_title)
         cache[movie_title] = poster_url
         save_cache(cache)
-
-        # Small delay to be polite
         time.sleep(0.05)
 
         return poster_url
@@ -163,7 +144,7 @@ def get_poster_url_for_title(token, movie_title, cache):
 
 
 def process_split(split, token, cache):
-    input_path = f"data/processed/{split}.json"
+    input_path = PROCESSED_DIR / f"{split}.json"
     df = pd.read_json(input_path)
 
     if "movie_title" not in df.columns and "image_path" in df.columns:
@@ -183,12 +164,13 @@ def process_split(split, token, cache):
             continue
 
         filename = safe_filename(movie_title + "_" + str(row["id"])) + ".jpg"
-        output_path = os.path.join(POSTER_DIR, filename)
+        output_path = POSTER_DIR / filename
+        output_rel_path = POSTER_DIR_REL / filename
 
         ok = download_image(poster_url, output_path)
 
         if ok:
-            poster_paths.append(output_path)
+            poster_paths.append(str(output_rel_path))
         else:
             poster_paths.append(None)
 
@@ -199,7 +181,7 @@ def process_split(split, token, cache):
     df = df.dropna(subset=["poster_path"])
     after = len(df)
 
-    output_path = f"data/processed/{split}_with_posters_tvdb.json"
+    output_path = PROCESSED_DIR / f"{split}_with_posters_tvdb.json"
     df.to_json(output_path, orient="records", indent=2)
 
     print(f"{split}: saved {after}/{before} rows with posters")
